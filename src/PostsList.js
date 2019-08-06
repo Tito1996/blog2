@@ -44,7 +44,7 @@ class PostsList extends React.Component{
                 <div className="ui relaxed divided list">
                     {
                         this.state.posts.map( item => {
-                            const usuario = this.state.users.filter(user => {return user.id === 1})[0];
+                            const usuario = this.state.users.filter(user => {return user.id === item.userId})[0];
                             return (
                                 <div className="item" key={item.id}>
                                     <i className="large github middle aligned icon"></i>
