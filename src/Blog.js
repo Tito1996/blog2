@@ -1,7 +1,22 @@
 import React from 'react';
 import PostsList from './PostsList';
+import { PostDetail } from './PostDetail'
 
 class Blog extends React.Component{
+
+    constructor(props){
+        super(props);
+        this.state = {
+            selected: null,
+        }
+    }
+    
+    handlePostClick = item => {
+        console.log(item.target)
+        this.setState({
+            selected: item,
+        })
+    }
 
 
     render() {
@@ -9,10 +24,10 @@ class Blog extends React.Component{
             <div className="blog ui container">
                 <div className="ui grid">
                     <div className="four wide column">
-                        <PostsList></PostsList>
+                        <PostsList handlePostClick={this.handlePostClick}></PostsList>
                     </div>
                     <div className="twelve wide column">
-                        <p>Aquí irá el detalle</p>
+                    {this.state.selected ? < PostDetail item ={this.state.selected}></PostDetail> : ""}
                     </div>
                 </div>
             </div>

@@ -18,10 +18,6 @@ class PostsList extends React.Component{
         }).catch(console.log)
     }
 
-    handlePostClick = item => {
-        console.log(item.target)
-    }
-
     render(){
         return (
             <div className="posts-list">
@@ -32,8 +28,8 @@ class PostsList extends React.Component{
                                 <div className="item" key={item.id}>
                                     <i className="large github middle aligned icon"></i>
                                     <div className="content">
-                                    <a href="#" className="header" onClick= { event => this.handlePostClick(item)}>{item.title}</a>
-                                    <div className="description">Usuario {item.userId}</div>
+                                        <a href="#" className="header" onClick= { event => this.props.handlePostClick(item)}>{item.title}</a>
+                                        <div className="description">Usuario {item.userId}</div>
                                     </div>
                                 </div>
                             )
