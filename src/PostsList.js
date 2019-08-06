@@ -38,18 +38,20 @@ class PostsList extends React.Component{
     }
 
     render(){
+
         return (
             <div className="posts-list">
                 <div className="ui relaxed divided list">
                     {
                         this.state.posts.map( item => {
+                            const usuario = this.state.users.filter(user => {return user.id === 1})[0];
                             return (
                                 <div className="item" key={item.id}>
                                     <i className="large github middle aligned icon"></i>
                                     <div className="content">
                                         <a href="#" className="header" onClick= { event => this.props.handlePostClick(item)}>{item.title}</a>
                                         <div className="description">
-                                            {this.state.users.filter(e => e.id === item.id)}
+                                            {usuario? usuario.name: ""}
                                         </div>
                                     </div>
                                 </div>
