@@ -10,8 +10,16 @@ export class PostDetail extends React.Component{
         }
     }
 
+    componentWillReceiveProps(nextProps){
+        this.getUser(nextProps.item.userId);
+    }
+
     componentDidMount(){
-        axios.get(`https://jsonplaceholder.typicode.com/users/${this.props.item.userId}`).then(
+        this.getUser(this.props.item.userId);
+    }
+
+    getUser = id => {
+        axios.get(`https://jsonplaceholder.typicode.com/users/${id}`).then(
             res => {
                 this.setState({
                     user: res.data
