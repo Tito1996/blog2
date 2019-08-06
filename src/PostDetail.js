@@ -19,7 +19,7 @@ export class PostDetail extends React.Component{
             }
         ).catch(console.log)
     }
-
+/* JEJEJEJEJEJEJEJEJE */
     render(){
 
         return(
