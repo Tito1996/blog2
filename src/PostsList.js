@@ -7,15 +7,34 @@ class PostsList extends React.Component{
         super(props);
         this.state = {
             posts: [],
+            users: [],
         }
     }
     
     componentDidMount(){
-        axios.get("https://jsonplaceholder.typicode.com/posts").then( (res) => {
+
+        Promise.all(
+            [axios.get("https://jsonplaceholder.typicode.com/posts"),
+            axios.get("https://jsonplaceholder.typicode.com/users")]).then(
+            result => {
+                console.log(result);
+                this.setState({
+                    posts: result[0].data,
+                    users: result[1].data,
+                })
+            }
+        )
+        /* axios.get("https://jsonplaceholder.typicode.com/posts").then( (res) => {
             this.setState ({
                 posts: res.data
             })
-        }).catch(console.log)
+            return axios.get("https://jsonplaceholder.typicode.com/users")
+        }
+        ).then(
+            res => this.setState({
+                users: res.data
+            })
+        ).catch(console.log) */
     }
 
     render(){
@@ -29,7 +48,9 @@ class PostsList extends React.Component{
                                     <i className="large github middle aligned icon"></i>
                                     <div className="content">
                                         <a href="#" className="header" onClick= { event => this.props.handlePostClick(item)}>{item.title}</a>
-                                        <div className="description">Usuario {item.userId}</div>
+                                        <div className="description">
+                                            {this.state.users.filter(e => e.id === item.id)}
+                                        </div>
                                     </div>
                                 </div>
                             )
